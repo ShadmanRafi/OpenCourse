@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<h1> {{data.course.course_name}} </h1>
+
+{% if data.user_id == 0 %}
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="course" value="{{data.course}}"/>
+    <input type="hidden" name="user_id" value="{{request.user.id}}"/>
+    <input type="hidden" name="is_complete" value="{{data.is_complete}}">
+    <input type="submit" value="Enroll"/>
+</form>
+{% elif data.user_id > 0 %}
+
+<h2> Enrolled </h2>
+{% if data.is_complete == True %}
+<h2> Status: Completed </h2>
+{% else %}
+<h2> Status: Incomplete </h2>
+{% endif %}
+
+{% endif %}
+
+
+{% else %}
+<h1> UNAUTHORIZED USER </h1>
+{% endif %}
+
+{% endblock %}

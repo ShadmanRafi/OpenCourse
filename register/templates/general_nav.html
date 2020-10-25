@@ -1,0 +1,13 @@
+<nav>
+    <ul>
+        <li><a href="{% url 'all_course' %}">All Courses</a></li>
+        {% if user.is_authenticated %}
+        {% if request.user.is_superuser %}
+        <li><a href="{% url 'create' %}">Create Course</a></li>
+        {% else %}
+        <li><a href="{% url 'my_courses' %}">My Courses</a></li>
+        {% endif %}
+        <li><a href="{% url 'logout' %}">Log Out</a></li>
+        {% endif %}
+    </ul>
+</nav>

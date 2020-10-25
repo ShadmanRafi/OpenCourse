@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<h1> My Enrolled Courses </h1>
+<div style="overflow-x:auto;">
+<table style="width: 40%;">
+<tr>
+    <th>Course Name</th>
+    <th>Link</th>
+</tr>
+
+{% for i in o_list %}
+<tr>
+    
+    <td style="color: darkslategrey;">{{i.name}}</td>
+    <td style="text-align: center;">
+        <a href="/course/{{i.id}}">Link</a>
+    </td>
+</tr>
+
+{% endfor %}
+</table>
+</div>
+
+{% else %}
+<h1> UNAUTHORIZED USER </h1>
+{% endif %}
+
+{% endblock %}
